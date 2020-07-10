@@ -101,11 +101,18 @@ class MyClient(discord.Client):
  #Вход выход в аудиоканал          
     async def on_voice_state_update(self,memb,before,after):
      dt=datetime.now()
-     if (after.channel.id == voice_chid and before.channel.id != voice_chid):
-         await client.get_channel(working_chid).send('{} подключился к каналу в {}'.format(memb.mention, dt.strftime("%H:%M:%S %d %B")))
-     if (after.channel.id != voice_chid and before.channel.id == voice_chid):
-         await client.get_channel(working_chid).send('{} отключился от канала в {}'.format(memb.mention, dt.strftime("%H:%M:%S %d %B")))      
-            
+     
+     if (after.channel != None)and(after.channel.id == voice_chid): 
+        if (before.channel == None):
+          await client.get_channel(working_chid).send('{} подключился к каналу в {}'.format(memb.mention, dt.strftime("%H:%M:%S %d %B")))
+        elif (before.channel.id != voice_chid): 
+          await client.get_channel(working_chid).send('{} перешел в канал в {}'.format(memb.mention, dt.strftime("%H:%M:%S %d %B")))
+     if (before.channel != None)and(before.channel.id == voice_chid): 
+        if (after.channel == None):
+          await client.get_channel(working_chid).send('{} отключился от канала в {}'.format(memb.mention, dt.strftime("%H:%M:%S %d %B")))
+        elif (after.channel.id != voice_chid): 
+          await client.get_channel(working_chid).send('{} отошел от канала в {}'.format(memb.mention, dt.strftime("%H:%M:%S %d %B")))
+
 
 
 
