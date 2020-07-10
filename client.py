@@ -1,5 +1,6 @@
 
 import datetime
+from datetime import datetime
 import discord
 import asyncio
 from discord.ext import commands
@@ -99,10 +100,11 @@ class MyClient(discord.Client):
  
  #Вход выход в аудиоканал          
     async def on_voice_state_update(self,memb,before,after):
+     dt=datetime.now()
      if (after.channel.id == voice_chid and before.channel.id != voice_chid):
-         await client.get_channel(working_chid).send('{} подключился к каналу.'.format(memb.mention))
+         await client.get_channel(working_chid).send('{} подключился к каналу в {}'.format(memb.mention, dt.strftime("%H:%M:%S %d %B")))
      if (after.channel.id != voice_chid and before.channel.id == voice_chid):
-         await client.get_channel(working_chid).send('{} отключился от канала.'.format(memb.mention))       
+         await client.get_channel(working_chid).send('{} отключился от канала в {}'.format(memb.mention, dt.strftime("%H:%M:%S %d %B")))      
             
 
 
