@@ -4,6 +4,7 @@ import discord
 import asyncio
 from discord.ext import commands
 
+TOKEN = 'NzI0OTI3Mjg0NTU3MTE5NTQw.XvIYlw.gOpygUmj4tc7FRRC66DDzTXv3-Q'
 chid=724986660890345498 #Канал системных сообщений
 zal_ozhidaniya_id=724986660286365709 #Канал зал ожидания
 PKid=724986659153641505 #Роль Сотрудника ПК 
@@ -95,19 +96,17 @@ class MyClient(discord.Client):
            emb.discription = '{}'.format(S[2])
            
            await message.channel.send(embed = emb)
-           
+ 
+ #Вход выход в аудиоканал          
     async def on_voice_state_update(self,memb,before,after):
      if (after.channel.id == voice_chid and before.channel.id != voice_chid):
          await client.get_channel(working_chid).send('{} подключился к каналу.'.format(memb.mention))
      if (after.channel.id != voice_chid and before.channel.id == voice_chid):
          await client.get_channel(working_chid).send('{} отключился от канала.'.format(memb.mention))       
             
-            
-            
-            
 
 
-bot = MyClient()
-TOKEN = 'NzI0OTI3Mjg0NTU3MTE5NTQw.XvIYlw.gOpygUmj4tc7FRRC66DDzTXv3-Q'
-bot.run(TOKEN)
+
+client = MyClient()
+client.run(TOKEN)
 
