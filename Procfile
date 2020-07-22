@@ -1,2 +1,1 @@
-worker: python -m pip install -U discord.py
-python client.py
+worker: python client.py
