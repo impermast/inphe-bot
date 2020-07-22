@@ -1,11 +1,9 @@
-
+import discord
 import datetime
 from datetime import datetime
-import discord
 import asyncio
-from discord.ext import commands
 
-TOKEN = 'NzI0OTI3Mjg0NTU3MTE5NTQw.XvIYlw.gOpygUmj4tc7FRRC66DDzTXv3-Q'
+TOKEN = 'NzI0OTI3Mjg0NTU3MTE5NTQw.XxhGmA.YiofcsB8mmEB29rBLILSEnWGtfs'
 chid=724986660890345498 #Канал системных сообщений
 zal_ozhidaniya_id=724986660286365709 #Канал зал ожидания
 PKid=724986659153641505 #Роль Сотрудника ПК 
@@ -14,13 +12,9 @@ voice_chid=724986660286365710 #Канал получить консультац�
 working_chid=729588749155041290 #Канал учета времени
 
 class MyClient(discord.Client):
-    
-    
-    
     async def on_ready(self):
         print('Logged on as', self.user)
 
-    
     async def on_member_join(self, member):
         await client.get_channel(chid).send('{} joined.'.format(member.mention))
         
@@ -35,29 +29,11 @@ class MyClient(discord.Client):
                 if embed.title == emb.title:
                     await mes.delete()
         await client.get_channel(zal_ozhidaniya_id).send(embed = emb)
-        
-        
+
     async def on_member_remove(self, member):
         await client.get_channel(chid).send('{} leaved.'.format(member.mention))
 
     async def on_message(self, message):
-
-# Достижения https://admission.mephi.ru/admission/baccalaureate-and-specialty/personal-achievements#%D0%91%D0%B8%D0%A1
-     """
-     if ((message.content.startswith('!д'))or(message.content.startswith('!Д'))or(message.content.startswith('!Достижения')))and(message.author != self.user):
-         print('[COMAND] !д')
-         await message.delete()
-           emb= discord.Embed(title = 'Список индивидуальных достижений.'), colour = discord.Color.blue())
-           emb.set_thumbnail(url = 'https://sun9-61.userapi.com/c837538/v837538137/1abc5/VdZCHNTGdO0.jpg')
-           emb.discription = 'при приеме на обучение по программам бакалавриата, программам специалитета'
-           
-           emb.add_field(name = 'Название ИД', value = 'Победители олимпиады по предмету направления подготовки /n Призеры олимпиады по предмету направления подготовки /n')
-           emb.add_field(name = 'Количество баллов', value = '4 /n 3 /n')
-           emb.add_field(name = 'Подтверждающий документ', value = 'Диплом победителя олимпиады 11 класса, полученный не позднее 1 года до начала приема документов (для дипломов, не использованных в особых правах) /n Диплом призера олимпиады 11 класса, полученный не позднее 1 года до начала приема документов (для дипломов, не использованных в особых правах) /n')
-           
-           await message.channel.send(embed = emb) 
-     """
-
 
 #Проверка роли
      if message.guild.get_role(PKid) in message.author.roles:
@@ -112,9 +88,6 @@ class MyClient(discord.Client):
           await client.get_channel(working_chid).send('{} отключился от канала в {}'.format(memb.mention, dt.strftime("%H:%M:%S %d %B")))
         elif (after.channel.id != voice_chid): 
           await client.get_channel(working_chid).send('{} отошел от канала в {}'.format(memb.mention, dt.strftime("%H:%M:%S %d %B")))
-
-
-
 
 client = MyClient()
 client.run(TOKEN)
