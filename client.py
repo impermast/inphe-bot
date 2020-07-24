@@ -16,18 +16,27 @@ class MyClient(discord.Client):
         print('Logged on as', self.user)
 
     async def on_member_join(self, member):
-        await client.get_channel(chid).send('{} joined.'.format(member.mention))
-        
         print('[COMAND] !emb')
         
+        #Сообщение в системный чат
+        await client.get_channel(chid).send('{} joined.'.format(member.mention))
+        
+        #Создание нового емб
         emb= discord.Embed(title = 'Добро пожаловть на Discord сервер приемной комиссии Института ядерной физики и технологий НИЯУ МИФИ.', colour = discord.Color.blue())
         emb.set_thumbnail(url = 'https://sun9-61.userapi.com/c837538/v837538137/1abc5/VdZCHNTGdO0.jpg')
-        emb.add_field(name = 'Здравствуйте', value = '{0} ,Вы можете задать вопрос в одном из тематических чатов, а также присоединиться к голосовому каналу и пообщаться с {1} лично. Какой вопрос вас интересует?'.format(member.mention,member.guild.get_role(PKid).mention))
-        
+        descript = '**Здравствуйте** {0}. Вы можете задать вопрос в одном из тематических чатов, а также присоединиться к голосовому каналу "Получить консультацию" и пообщаться с {1} '.format(member.mention, member.guild.get_role(PKid).mention)
+        #Цикл добавляющий имена приемщиков из войсканала
+        for memb in client.get_channel(voice_chid).members:
+            if memb.guild.get_role(PKid) in memb.roles:
+                descript = descript + '{}, '.format(memb.mention)
+        descript = descript + 'лично. Какой вопрос вас интересует?'
+        emb.description = descript
+        #Чистка чата от предыдущих ембов
         async for mes in client.get_channel(zal_ozhidaniya_id).history():
             for embed in mes.embeds:
                 if embed.title == emb.title:
                     await mes.delete()
+        #Отправка нового эмба
         await client.get_channel(zal_ozhidaniya_id).send(embed = emb)
 
     async def on_member_remove(self, member):
@@ -79,6 +88,10 @@ class MyClient(discord.Client):
      dt=datetime.now()
      
      if (after.channel != None)and(after.channel.id == voice_chid): 
+        if memb.guild.get_role(PKid) in memb.roles:
+            pass
+        else:
+            await client.get_channel(working_chid).send('**ВОШЕЛ АБИТУРИЕНТ**')
         if (before.channel == None):
           await client.get_channel(working_chid).send('{} подключился к каналу в {}'.format(memb.mention, dt.strftime("%H:%M:%S %d %B")))
         elif (before.channel.id != voice_chid): 
