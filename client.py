@@ -20,6 +20,8 @@ class MyClient(discord.Client):
         
         #Сообщение в системный чат
         await client.get_channel(chid).send('{} joined.'.format(member.mention))
+        #Создание задержки
+        await asyncio.sleep(1.5)
         
         #Создание нового емб
         emb= discord.Embed(title = 'Добро пожаловть на Discord сервер приемной комиссии Института ядерной физики и технологий НИЯУ МИФИ.', colour = discord.Color.blue())
@@ -56,13 +58,17 @@ class MyClient(discord.Client):
 #delfunc
         if (message.content.startswith('!delete')) and(message.channel.id != chid):
             print('[COMMAND] !del')
+            number = int(message.content[8:])
+            i=0
             async for mes in message.channel.history():
+                if (i > number):
+                    break
+                i=i+1
                 ## wait for 0.5 seconds again
                 await asyncio.sleep(0.5)
                 ## delete the message
                 await mes.delete()
             print('[COMMAND] !del over')
-#cmdfunc
         if (message.content.startswith('!commands'))and(message.author != self.user):
             print('[COMMAND] !cmd')
             await message.channel.send('List of comanеds: !write [text] !delete !commands')
