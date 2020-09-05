@@ -26,12 +26,11 @@ class MyClient(discord.Client):
         #Создание нового емб
         emb= discord.Embed(title = 'Добро пожаловть на Discord сервер приемной комиссии Института ядерной физики и технологий НИЯУ МИФИ.', colour = discord.Color.blue())
         emb.set_thumbnail(url = 'https://sun9-61.userapi.com/c837538/v837538137/1abc5/VdZCHNTGdO0.jpg')
-        descript = '**Здравствуйте** {0}. Вы можете задать вопрос в одном из тематических чатов, а также присоединиться к голосовому каналу "Получить консультацию" и пообщаться с {1} '.format(member.mention, member.guild.get_role(PKid).mention)
+        descript = '**Здравствуйте** {0}.  Приёмная комиссия НИЯУ МИФИ завершила свою работу, однако Вы можете задать интересующий Вас вопрос в чате или связаться с нами Вконтакте: vk.com/inphe.mephi'.format(member.mention, member.guild.get_role(PKid).mention)
         #Цикл добавляющий имена приемщиков из войсканала
-        for memb in client.get_channel(voice_chid).members:
-            if memb.guild.get_role(PKid) in memb.roles:
-                descript = descript + '{}, '.format(memb.mention)
-        descript = descript + 'лично. Какой вопрос вас интересует?'
+#        for memb in client.get_channel(voice_chid).members:
+ #           if memb.guild.get_role(PKid) in memb.roles:
+  #              descript = descript + '{}, '.format(memb.mention)
         emb.description = descript
         #Чистка чата от предыдущих ембов
         async for mes in client.get_channel(zal_ozhidaniya_id).history():
