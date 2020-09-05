@@ -75,7 +75,7 @@ class MyClient(discord.Client):
             
         if (message.content.startswith('!test'))and(message.author != self.user):
             print('[COMMAND] !test')
-            await message.channel.send('**Launched**')
+            await message.channel.send('**Launched v4.0**')
 
         if message.content.startswith('!emb'):
            print('[COMAND] !emb')
