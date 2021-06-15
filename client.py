@@ -20,7 +20,7 @@ class MyClient(discord.Client):
         print('Logged on as', self.user)
 
     async def on_member_join(self, member):
-       print('[COMAND] !join')
+        print('[COMAND] !join')
         
         #Сообщение в системный чат
         await client.get_channel(chid).send('{} joined.'.format(member.mention))
