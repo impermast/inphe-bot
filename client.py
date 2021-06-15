@@ -8,15 +8,17 @@ chid=724986660890345498 #Канал системных сообщений
 zal_ozhidaniya_id=724986660286365709 #Канал зал ожидания
 PKid=724986659153641505 #Роль Сотрудника ПК 
 info_chid=724986660286365714 #Канал
-voice_chid=724986660286365710 #Канал получить консультацию
+voice_chid=724986660692951075 #Канал получить консультацию
 working_chid=729588749155041290 #Канал учета времени
+qu_chid=724986660286365709 #задать-вопрос канал
+
 
 class MyClient(discord.Client):
     async def on_ready(self):
         print('Logged on as', self.user)
 
     async def on_member_join(self, member):
-        print('[COMAND] !emb')
+       print('[COMAND] !join')
         
         #Сообщение в системный чат
         await client.get_channel(chid).send('{} joined.'.format(member.mention))
@@ -26,8 +28,10 @@ class MyClient(discord.Client):
         #Создание нового емб
         emb= discord.Embed(title = 'Добро пожаловть на Discord сервер приемной комиссии Института ядерной физики и технологий НИЯУ МИФИ.', colour = discord.Color.blue())
         emb.set_thumbnail(url = 'https://sun9-61.userapi.com/c837538/v837538137/1abc5/VdZCHNTGdO0.jpg')
-        descript = '**Здравствуйте** {0}.  Приёмная комиссия НИЯУ МИФИ завершила свою работу, однако Вы можете задать интересующий Вас вопрос в чате или связаться с нами Вконтакте: vk.com/inphe.mephi'.format(member.mention, member.guild.get_role(PKid).mention)
-        #Цикл добавляющий имена приемщиков из войсканала
+        descript = '**Здравствуйте** {0}. {1} ответит на Ваши вопросы в голосовом канале "Общение" с 10:00 до 18:00 по будням, а также с 10:00 до 14:00 по субботам. Также Вы можете воспользоваться текстовым каналом {2}.'.format(member.mention, member.guild.get_role(PKid).mention, client.guild.get_chanel(qu_chid))
+
+
+    #Цикл добавляющий имена приемщиков из войсканала
 #        for memb in client.get_channel(voice_chid).members:
  #           if memb.guild.get_role(PKid) in memb.roles:
   #              descript = descript + '{}, '.format(memb.mention)
@@ -97,6 +101,7 @@ class MyClient(discord.Client):
             pass
         else:
             await client.get_channel(working_chid).send('**ВОШЕЛ АБИТУРИЕНТ**')
+            await client.get_channel(chid).send('{} абитуриент в голосовом канале.'.format(member.mention))
         if (before.channel == None):
           await client.get_channel(working_chid).send('{} подключился к каналу в {}'.format(memb.mention, dt.strftime("%H:%M:%S %d %B")))
         elif (before.channel.id != voice_chid): 
