@@ -7,10 +7,10 @@ ver='**Launched v4.1**'
 
 TOKEN = 'NzI0OTI3Mjg0NTU3MTE5NTQw.XxhGmA.YiofcsB8mmEB29rBLILSEnWGtfs'
 chid=724986660890345498 #Канал системных сообщений
-zal_ozhidaniya_id=724986660286365709 #Канал зал ожидания
+zal_ozhidaniya_id=724986660286365712 #Канал зал ожидания/основной чат
 PKid=724986659153641505 #Роль Сотрудника ПК 
 info_chid=724986660286365714 #Канал
-voice_chid=724986660692951075 #Канал получить консультацию
+voice_chid=724986660692951075 #Канал войсчат
 working_chid=729588749155041290 #Канал учета времени
 qu_chid=724986660286365709 #задать-вопрос канал
 
@@ -103,7 +103,7 @@ class MyClient(discord.Client):
             pass
         else:
             await client.get_channel(working_chid).send('**ВОШЕЛ АБИТУРИЕНТ**')
-            await client.get_channel(chid).send('{} абитуриент в голосовом канале.'.format(member.mention))
+            await client.get_channel(chid).send('{}, абитуриент в голосовом канале.'.format(memb.guild.get_role(PKid).mention))
         if (before.channel == None):
           await client.get_channel(working_chid).send('{} подключился к каналу в {}'.format(memb.mention, dt.strftime("%H:%M:%S %d %B")))
         elif (before.channel.id != voice_chid): 
