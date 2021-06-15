@@ -3,7 +3,7 @@ import datetime
 from datetime import datetime
 import asyncio
 
-ver='**Launched v4.2k**'
+ver='**Launched v4.2p**'
 
 TOKEN = 'NzI0OTI3Mjg0NTU3MTE5NTQw.XxhGmA.YiofcsB8mmEB29rBLILSEnWGtfs'
 chid=724986660890345498 #Канал системных сообщений
@@ -14,10 +14,7 @@ voice_chid=724986660692951075 #Канал войсчат
 working_chid=729588749155041290 #Канал учета времени
 qu_chid=724986660286365709 #задать-вопрос канал
 
-intents = discord.Intents(messages=True, guilds=True)
-
-
-class MyClient(discord.Client(intents=intents)):
+class MyClient(discord.Client):
     async def on_ready(self):
         print('Logged on as', self.user)
 
@@ -116,6 +113,11 @@ class MyClient(discord.Client(intents=intents)):
         elif (after.channel.id != voice_chid): 
           await client.get_channel(working_chid).send('{} отошел от канала в {}'.format(memb.mention, dt.strftime("%H:%M:%S %d %B")))
 
-client = MyClient()
+        
+
+intents = discord.Intents.default()
+intents.messages=True
+
+client = MyClient(intents=intents)
 client.run(TOKEN)
 
