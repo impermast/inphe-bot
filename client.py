@@ -29,7 +29,7 @@ class MyClient(discord.Client):
         #Создание нового емб
         emb= discord.Embed(title = 'Добро пожаловть на Discord сервер приемной комиссии Института ядерной физики и технологий НИЯУ МИФИ.', colour = discord.Color.blue())
         emb.set_thumbnail(url = 'https://sun9-61.userapi.com/c837538/v837538137/1abc5/VdZCHNTGdO0.jpg')
-        descript = '**Здравствуйте** {0}. {1} ответит на Ваши вопросы в голосовом канале "Общение" с 10:00 до 18:00 по будням, а также с 10:00 до 14:00 по субботам. Также Вы можете воспользоваться текстовым каналом {2}.'.format(member.mention, member.guild.get_role(PKid).mention, member.guild.get_chanel(qu_chid).mention)
+        descript = '**Здравствуйте** {0}. {1} ответит на Ваши вопросы в голосовом канале "Общение" с 10:00 до 18:00 по будням, а также с 10:00 до 14:00 по субботам. Также Вы можете воспользоваться текстовым каналом {2}.'.format(member.mention, member.guild.get_role(PKid).mention, client.get_chanel(qu_chid).mention)
 
 
         #Цикл добавляющий имена приемщиков из войсканала
