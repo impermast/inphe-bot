@@ -3,7 +3,7 @@ import datetime
 from datetime import datetime
 import asyncio
 
-ver='**Launched v4.2p**'
+ver='**Launched v5.0**'
 
 TOKEN = 'NzI0OTI3Mjg0NTU3MTE5NTQw.XxhGmA.YiofcsB8mmEB29rBLILSEnWGtfs'
 chid=724986660890345498 #Канал системных сообщений
@@ -117,6 +117,9 @@ class MyClient(discord.Client):
 
 intents = discord.Intents.default()
 intents.messages=True
+intents.members=True
+intents.guilds=True
+intents.voice_states=True
 
 client = MyClient(intents=intents)
 client.run(TOKEN)
