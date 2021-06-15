@@ -3,7 +3,7 @@ import datetime
 from datetime import datetime
 import asyncio
 
-ver='**Launched v4.2**'
+ver='**Launched v4.2k**'
 
 TOKEN = 'NzI0OTI3Mjg0NTU3MTE5NTQw.XxhGmA.YiofcsB8mmEB29rBLILSEnWGtfs'
 chid=724986660890345498 #Канал системных сообщений
@@ -14,8 +14,10 @@ voice_chid=724986660692951075 #Канал войсчат
 working_chid=729588749155041290 #Канал учета времени
 qu_chid=724986660286365709 #задать-вопрос канал
 
+intents = discord.Intents(messages=True, guilds=True)
 
-class MyClient(discord.Client):
+
+class MyClient(discord.Client(intents=intents)):
     async def on_ready(self):
         print('Logged on as', self.user)
 
