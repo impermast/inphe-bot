@@ -3,6 +3,8 @@ import datetime
 from datetime import datetime
 import asyncio
 
+ver='**Launched v4.1**'
+
 TOKEN = 'NzI0OTI3Mjg0NTU3MTE5NTQw.XxhGmA.YiofcsB8mmEB29rBLILSEnWGtfs'
 chid=724986660890345498 #Канал системных сообщений
 zal_ozhidaniya_id=724986660286365709 #Канал зал ожидания
@@ -79,7 +81,7 @@ class MyClient(discord.Client):
             
         if (message.content.startswith('!test'))and(message.author != self.user):
             print('[COMMAND] !test')
-            await message.channel.send('**Launched v4.0**')
+            await message.channel.send(ver)
 
         if message.content.startswith('!emb'):
            print('[COMAND] !emb')
