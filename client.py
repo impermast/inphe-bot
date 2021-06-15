@@ -3,7 +3,7 @@ import datetime
 from datetime import datetime
 import asyncio
 
-ver='**Launched v4.2**'
+ver='**Launched v4.2a**'
 
 TOKEN = 'NzI0OTI3Mjg0NTU3MTE5NTQw.XxhGmA.YiofcsB8mmEB29rBLILSEnWGtfs'
 chid=724986660890345498 #Канал системных сообщений
@@ -33,10 +33,10 @@ class MyClient(discord.Client):
         descript = '**Здравствуйте** {0}. {1} ответит на Ваши вопросы в голосовом канале "Общение" с 10:00 до 18:00 по будням, а также с 10:00 до 14:00 по субботам. Также Вы можете воспользоваться текстовым каналом {2}.'.format(member.mention, member.guild.get_role(PKid).mention, client.guild.get_chanel(qu_chid))
 
 
-    #Цикл добавляющий имена приемщиков из войсканала
-#        for memb in client.get_channel(voice_chid).members:
- #           if memb.guild.get_role(PKid) in memb.roles:
-  #              descript = descript + '{}, '.format(memb.mention)
+        #Цикл добавляющий имена приемщиков из войсканала
+        #        for memb in client.get_channel(voice_chid).members:
+        #           if memb.guild.get_role(PKid) in memb.roles:
+        #              descript = descript + '{}, '.format(memb.mention)
         emb.description = descript
         #Чистка чата от предыдущих ембов
         async for mes in client.get_channel(zal_ozhidaniya_id).history():
