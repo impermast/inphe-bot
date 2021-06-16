@@ -3,14 +3,14 @@ import datetime
 from datetime import datetime
 import asyncio
 
-ver='**Launched v5.1**'
+ver='**Launched v5.2**'
 
 TOKEN = 'NzI0OTI3Mjg0NTU3MTE5NTQw.XxhGmA.YiofcsB8mmEB29rBLILSEnWGtfs'
 chid=724986660890345498 #Канал системных сообщений
-zal_ozhidaniya_id=724986660286365712 #Канал зал ожидания/основной чат
+zal_ozhidaniya_id=724986660286365709 #Канал зал ожидания/задать вопрос
 PKid=724986659153641505 #Роль Сотрудника ПК 
-info_chid=724986660286365714 #Канал
-voice_chid=724986660692951075 #Канал войсчат
+info_chid=724986660286365714 #Канал инфо
+voice_chid=854620086203056128 #Канал войсчат
 working_chid=729588749155041290 #Канал учета времени
 qu_chid=724986660286365709 #задать-вопрос канал
 
@@ -29,7 +29,7 @@ class MyClient(discord.Client):
         #Создание нового емб
         emb= discord.Embed(title = 'Добро пожаловть на Discord сервер приемной комиссии Института ядерной физики и технологий НИЯУ МИФИ.', colour = discord.Color.blue())
         emb.set_thumbnail(url = 'https://sun9-61.userapi.com/c837538/v837538137/1abc5/VdZCHNTGdO0.jpg')
-        descript = '**Здравствуйте** {0}. {1} ответит на Ваши вопросы в голосовом канале "Общение" с 10:00 до 18:00 по будням, а также с 10:00 до 14:00 по субботам. Также Вы можете воспользоваться текстовым каналом {2}.'.format(member.mention, member.guild.get_role(PKid).mention, client.get_channel(qu_chid).mention)
+        descript = '**Здравствуйте** {0}. {1} ответит на Ваши вопросы в голосовом канале "задать вопрос" с 10:00 до 18:00 по будням, а также с 10:00 до 14:00 по субботам. Также Вы можете воспользоваться текстовым каналом {2}.'.format(member.mention, member.guild.get_role(PKid).mention, client.get_channel(qu_chid).mention)
 
 
         #Цикл добавляющий имена приемщиков из войсканала
