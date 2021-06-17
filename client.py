@@ -3,7 +3,7 @@ import datetime
 from datetime import datetime
 import asyncio
 
-ver='**Launched v5.2**'
+ver='**Launched v5.3**'
 
 TOKEN = 'NzI0OTI3Mjg0NTU3MTE5NTQw.XxhGmA.YiofcsB8mmEB29rBLILSEnWGtfs'
 chid=724986660890345498 #Канал системных сообщений
@@ -27,23 +27,18 @@ class MyClient(discord.Client):
         await asyncio.sleep(1.5)
         
         #Создание нового емб
-        emb= discord.Embed(title = 'Добро пожаловть на Discord сервер приемной комиссии Института ядерной физики и технологий НИЯУ МИФИ.', colour = discord.Color.blue())
-        emb.set_thumbnail(url = 'https://sun9-61.userapi.com/c837538/v837538137/1abc5/VdZCHNTGdO0.jpg')
-        descript = '**Здравствуйте** {0}. {1} ответит на Ваши вопросы в голосовом канале "задать вопрос" с 10:00 до 18:00 по будням, а также с 10:00 до 14:00 по субботам. Также Вы можете воспользоваться текстовым каналом {2}.'.format(member.mention, member.guild.get_role(PKid).mention, client.get_channel(qu_chid).mention)
+#        emb= discord.Embed(title = '', colour = discord.Color.blue())
+  #      emb.set_thumbnail(url = 'https://sun9-61.userapi.com/c837538/v837538137/1abc5/VdZCHNTGdO0.jpg')
+        descript = '**Здравствуйте**, {0}. Добро пожаловть на Discord сервер приемной комиссии Института ядерной физики и технологий НИЯУ МИФИ. {1} ответит на Ваши вопросы в голосовом канале "задать вопрос" с 10:00 до 18:00 по будням, а также с 10:00 до 14:00 по субботам. Также Вы можете воспользоваться текстовым каналом {2}.'.format(member.mention, member.guild.get_role(PKid).mention, client.get_channel(qu_chid).mention)
 
-
-        #Цикл добавляющий имена приемщиков из войсканала
-        #        for memb in client.get_channel(voice_chid).members:
-        #           if memb.guild.get_role(PKid) in memb.roles:
-        #              descript = descript + '{}, '.format(memb.mention)
-        emb.description = descript
+        
         #Чистка чата от предыдущих ембов
+        PKrole = member.guild.get_role(PKid)
         async for mes in client.get_channel(zal_ozhidaniya_id).history():
-            for embed in mes.embeds:
-                if embed.title == emb.title:
-                    await mes.delete()
+            if PKrole in mes.role_mentions:
+                await mes.delete()
         #Отправка нового эмба
-        await client.get_channel(zal_ozhidaniya_id).send(embed = emb)
+        await client.get_channel(zal_ozhidaniya_id).send(descript)
 
     async def on_member_remove(self, member):
         await client.get_channel(chid).send('{} leaved.'.format(member.mention))
