@@ -3,7 +3,7 @@ import datetime
 from datetime import datetime
 import asyncio
 
-ver='**Launched v5.3**'
+ver='**Launched v5.4**'
 
 TOKEN = 'NzI0OTI3Mjg0NTU3MTE5NTQw.XxhGmA.YiofcsB8mmEB29rBLILSEnWGtfs'
 chid=724986660890345498 #Канал системных сообщений
@@ -29,7 +29,7 @@ class MyClient(discord.Client):
         #Создание нового емб
 #        emb= discord.Embed(title = '', colour = discord.Color.blue())
   #      emb.set_thumbnail(url = 'https://sun9-61.userapi.com/c837538/v837538137/1abc5/VdZCHNTGdO0.jpg')
-        descript = '**Здравствуйте**, {0}. Добро пожаловть на Discord сервер приемной комиссии Института ядерной физики и технологий НИЯУ МИФИ. {1} ответит на Ваши вопросы в голосовом канале "задать вопрос" с 10:00 до 18:00 по будням, а также с 10:00 до 14:00 по субботам. Также Вы можете воспользоваться текстовым каналом {2}.'.format(member.mention, member.guild.get_role(PKid).mention, client.get_channel(qu_chid).mention)
+        descript = '**Здравствуйте**, {0}. Приемная комиссия ИЯФиТ завершила свою работу, однако вы можете задать свой вопрос в текстовом канале {1}.'.format(member.mention, client.get_channel(qu_chid).mention)
 
         
         #Чистка чата от предыдущих ембов
