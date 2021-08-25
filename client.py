@@ -3,7 +3,7 @@ import datetime
 from datetime import datetime
 import asyncio
 
-ver='**Launched v5.5**'
+ver='**Launched v5.6**'
 
 TOKEN = 'NzI0OTI3Mjg0NTU3MTE5NTQw.XxhGmA.YiofcsB8mmEB29rBLILSEnWGtfs'
 chid=724986660890345498 #Канал системных сообщений
@@ -35,9 +35,9 @@ class MyClient(discord.Client):
 
         
         #Чистка чата от предыдущих ембов
-        PKrole = member.guild.get_role(PKid)
+        chen =  client.get_channel(qu_chid).mention
         async for mes in client.get_channel(zal_ozhidaniya_id).history():
-            if PKrole in mes.role_mentions:
+            if chen in mes.channel_mentions:
                 await mes.delete()
         #Отправка нового эмба
         await client.get_channel(zal_ozhidaniya_id).send(descript)
