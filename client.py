@@ -13,6 +13,7 @@ info_chid=724986660286365714 #Канал инфо
 voice_chid=854620086203056128 #Канал войсчат
 working_chid=729588749155041290 #Канал учета времени
 qu_chid=724986660286365709 #задать-вопрос канал
+greet = '**Здравствуйте**, {0}. Приемная комиссия ИЯФиТ завершила свою работу, однако вы можете задать свой вопрос в текстовом канале {1}.'
 
 class MyClient(discord.Client):
     async def on_ready(self):
@@ -29,7 +30,8 @@ class MyClient(discord.Client):
         #Создание нового емб
 #        emb= discord.Embed(title = '', colour = discord.Color.blue())
   #      emb.set_thumbnail(url = 'https://sun9-61.userapi.com/c837538/v837538137/1abc5/VdZCHNTGdO0.jpg')
-        descript = '**Здравствуйте**, {0}. Приемная комиссия ИЯФиТ завершила свою работу, однако вы можете задать свой вопрос в текстовом канале {1}.'.format(member.mention, client.get_channel(qu_chid).mention)
+  #      descript = '**Здравствуйте**, {0}. Приемная комиссия ИЯФиТ завершила свою работу, однако вы можете задать свой вопрос в текстовом канале {1}.'.format(member.mention, client.get_channel(qu_chid).mention)             descript = '**Здравствуйте**, {0}. Приемная комиссия ИЯФиТ завершила свою работу, однако вы можете задать свой вопрос в текстовом канале {1}.'.format(member.mention, client.get_channel(qu_chid).mention)
+        descript = greet.format(member.mention, client.get_channel(qu_chid).mention)
 
         
         #Чистка чата от предыдущих ембов
