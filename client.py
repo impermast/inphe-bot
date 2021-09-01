@@ -62,7 +62,7 @@ class MyClient(discord.Client):
 #greettest
         if (message.content.startswith('!greet'))and(message.author != self.user):
             print('[COMMAND] !greet')
-            await message.channel.send(greet1.format(member.mention, client.get_channel(qu_chid).mention))
+            await message.channel.send(greet1.format(member.mention, client.get_channel(qu_chid).mention),client.get_channel(qu_chid).mention))
             await message.delete()
 
             
