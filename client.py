@@ -3,7 +3,7 @@ import datetime
 from datetime import datetime
 import asyncio
 
-ver='**Launched v5.6**'
+ver='**Launched v5.7**'
 
 TOKEN = 'NzI0OTI3Mjg0NTU3MTE5NTQw.XxhGmA.YiofcsB8mmEB29rBLILSEnWGtfs'
 chid=724986660890345498 #Канал системных сообщений
@@ -13,6 +13,9 @@ info_chid=724986660286365714 #Канал инфо
 voice_chid=854620086203056128 #Канал войсчат
 working_chid=729588749155041290 #Канал учета времени
 qu_chid=724986660286365709 #задать-вопрос канал
+
+f = open('greeting.txt', 'r')
+greet1 = f.read()
 greet = '**Здравствуйте**, {0}. Приемная комиссия ИЯФиТ завершила свою работу, однако вы можете задать свой вопрос в текстовом канале {1}.'
 
 class MyClient(discord.Client):
@@ -55,7 +58,15 @@ class MyClient(discord.Client):
             print('[COMMAND] !w')
             await message.channel.send(message.content[6:])
             await message.delete()
+   
+#greettest
+        if (message.content.startswith('!greet'))and(message.author != self.user):
+            print('[COMMAND] !greet')
+            await message.channel.send(greet1.format(member.mention, client.get_channel(qu_chid).mention))
+            await message.delete()
 
+            
+            
 #delfunc
         if (message.content.startswith('!delete')) and(message.channel.id != chid):
             print('[COMMAND] !del')
@@ -118,6 +129,7 @@ intents.members=True
 intents.guilds=True
 intents.voice_states=True
 
+f.close()
 client = MyClient(intents=intents)
 client.run(TOKEN)
 
