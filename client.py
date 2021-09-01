@@ -3,7 +3,7 @@ import datetime
 from datetime import datetime
 import asyncio
 
-ver='**Launched v5.8**'
+ver='**Launched v5.7**'
 
 TOKEN = 'NzI0OTI3Mjg0NTU3MTE5NTQw.XxhGmA.YiofcsB8mmEB29rBLILSEnWGtfs'
 chid=724986660890345498 #Канал системных сообщений
@@ -62,9 +62,7 @@ class MyClient(discord.Client):
 #greettest
         if (message.content.startswith('!greet')):
             print('[COMMAND] !greet')
-            await message.channel.send(greet1.format(client.get_channel(qu_chid).mention, client.get_channel(qu_chid).mention, client.get_channel(qu_chid).mention)
-
-            
+            await message.channel.send(greet1.format(client.get_channel(qu_chid).mention, client.get_channel(qu_chid).mention, client.get_channel(qu_chid).mention))
             
 #delfunc
         if (message.content.startswith('!delete')) and(message.channel.id != chid):
