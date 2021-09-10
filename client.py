@@ -2,9 +2,10 @@ import discord
 import datetime
 from datetime import datetime
 import asyncio
+from passwords import TOKEN_DISCORD
 
-ver='**Launched v5.7**'
-TOKEN = 'NzI0OTI3Mjg0NTU3MTE5NTQw.XxhGmA.YiofcsB8mmEB29rBLILSEnWGtfs'
+ver='**Launched v5.8**'
+TOKEN = TOKEN_DISCORD
 chid=724986660890345498 #Канал системных сообщений
 zal_ozhidaniya_id=724986660286365709 #Канал зал ожидания/задать вопрос
 PKid=724986659153641505 #Роль Сотрудника ПК 
