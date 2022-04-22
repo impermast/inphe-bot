@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+token.txt
 password.py
 
 # C extensions
