@@ -4,7 +4,7 @@ from datetime import datetime
 import asyncio
 from passwords import TOKEN_DISCORD
 
-ver='**Launched v5.8**'
+ver='**Launched v5.9**'
 TOKEN = TOKEN_DISCORD
 chid=724986660890345498 #Канал системных сообщений
 zal_ozhidaniya_id=724986660286365709 #Канал зал ожидания/задать вопрос
@@ -16,7 +16,8 @@ qu_chid=724986660286365709 #задать-вопрос канал
 
 f = open('greeting.txt', 'r')
 greet1 = f.read()
-greet = '**Здравствуйте**, {0}. Приемная комиссия ИЯФиТ завершила свою работу, однако вы можете задать свой вопрос в текстовом канале {1}.'
+#greet1 = '**Здравствуйте**, {0}. Приемная комиссия ИЯФиТ завершила свою работу, однако вы можете задать свой вопрос в текстовом канале {1}.'
+f.close()
 
 class MyClient(discord.Client):
     async def on_ready(self):
@@ -34,7 +35,7 @@ class MyClient(discord.Client):
 #        emb= discord.Embed(title = '', colour = discord.Color.blue())
   #      emb.set_thumbnail(url = 'https://sun9-61.userapi.com/c837538/v837538137/1abc5/VdZCHNTGdO0.jpg')
   #      descript = '**Здравствуйте**, {0}. Приемная комиссия ИЯФиТ завершила свою работу, однако вы можете задать свой вопрос в текстовом канале {1}.'.format(member.mention, client.get_channel(qu_chid).mention)             descript = '**Здравствуйте**, {0}. Приемная комиссия ИЯФиТ завершила свою работу, однако вы можете задать свой вопрос в текстовом канале {1}.'.format(member.mention, client.get_channel(qu_chid).mention)
-        descript = greet.format(member.mention, client.get_channel(qu_chid).mention)
+        descript = greet1.format(member.mention, client.get_channel(qu_chid).mention)
 
         
         #Чистка чата от предыдущих ембов
@@ -126,7 +127,7 @@ intents.members=True
 intents.guilds=True
 intents.voice_states=True
 
-f.close()
+
 client = MyClient(intents=intents)
 client.run(TOKEN)
 
