@@ -56,53 +56,53 @@ class MyClient(discord.Client):
     async def on_message(self, message):
 
 #Проверка роли
-     if message.guild.get_role(PKid) in message.author.roles:
+        if message.guild.get_role(PKid) in message.author.roles:
 
 #writefunc
-        if (message.content.startswith('!write'))and(message.author != self.user):
-            print('[COMMAND] !w')
-            await message.channel.send(message.content[6:])
-            await message.delete()
+            if (message.content.startswith('!write'))and(message.author != self.user):
+                print('[COMMAND] !w')
+                await message.channel.send(message.content[6:])
+                await message.delete()
    
-#greettest
-        if (message.content.startswith('!greet')):
-            print('[COMMAND] !greet')
-            await message.channel.send(greet1.format(client.get_channel(qu_chid).mention, client.get_channel(qu_chid).mention, client.get_channel(qu_chid).mention))
-            
-#delfunc
-        if (message.content.startswith('!delete')) and(message.channel.id != chid):
-            print('[COMMAND] !del')
-            number = int(message.content[8:])
-            i=0
-            async for mes in message.channel.history():
-                if (i > number):
-                    break
-                i=i+1
-                ## wait for 0.5 seconds again
-                await asyncio.sleep(0.5)
-                ## delete the message
-                await mes.delete()
-            print('[COMMAND] !del over')
-        if (message.content.startswith('!commands'))and(message.author != self.user):
-            print('[COMMAND] !cmd')
-            await message.channel.send('List of comanеds: !write [text] !delete !commands')
-            await message.delete()
-            
-        if (message.content.startswith('!test'))and(message.author != self.user):
-            print('[COMMAND] !test')
-            await message.channel.send(ver)
+    #greettest
+            if (message.content.startswith('!greet')):
+                print('[COMMAND] !greet')
+                await message.channel.send(greet1.format(client.get_channel(qu_chid).mention, client.get_channel(qu_chid).mention, client.get_channel(qu_chid).mention))
+                
+    #delfunc
+            if (message.content.startswith('!delete')) and(message.channel.id != chid):
+                print('[COMMAND] !del')
+                number = int(message.content[8:])
+                i=0
+                async for mes in message.channel.history():
+                    if (i > number):
+                        break
+                    i=i+1
+                    ## wait for 0.5 seconds again
+                    await asyncio.sleep(0.5)
+                    ## delete the message
+                    await mes.delete()
+                print('[COMMAND] !del over')
+            if (message.content.startswith('!commands'))and(message.author != self.user):
+                print('[COMMAND] !cmd')
+                await message.channel.send('List of comanеds: !write [text] !delete !commands')
+                await message.delete()
+                
+            if (message.content.startswith('!test'))and(message.author != self.user):
+                print('[COMMAND] !test')
+                await message.channel.send(ver)
 
-        if message.content.startswith('!emb'):
-           print('[COMAND] !emb')
-           await message.delete()
-           
-           S=message.content.split('|')
-           emb= discord.Embed(title = '{}'.format(S[1]), colour = discord.Color.blue())
-           emb.set_thumbnail(url = 'https://sun9-61.userapi.com/c837538/v837538137/1abc5/VdZCHNTGdO0.jpg')
-           emb.discription = '{}'.format(S[2])
-           
-           await message.channel.send(embed = emb)
- 
+            if message.content.startswith('!emb'):
+              print('[COMAND] !emb')
+              await message.delete()
+            
+                S=message.content.split('|')
+                emb= discord.Embed(title = '{}'.format(S[1]), colour = discord.Color.blue())
+                emb.set_thumbnail(url = 'https://sun9-61.userapi.com/c837538/v837538137/1abc5/VdZCHNTGdO0.jpg')
+                emb.discription = '{}'.format(S[2])
+                
+                await message.channel.send(embed = emb)
+    
  #Вход выход в аудиоканал          
     async def on_voice_state_update(self,memb,before,after):
      dt=datetime.now()
