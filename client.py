@@ -124,6 +124,7 @@ class MyClient(discord.Client):
 
 intents = discord.Intents.default()
 intents.messages=True
+intents.message_content=True
 intents.members=True
 intents.guilds=True
 intents.voice_states=True
