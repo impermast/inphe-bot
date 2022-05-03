@@ -4,7 +4,7 @@ from datetime import datetime
 import asyncio
 #from passwords import TOKEN_DISCORD
 
-TOKEN = None
+TOKEN = "NzI0OTI3Mjg0NTU3MTE5NTQw.XxhGmA.YiofcsB8mmEB29rBLILSEnWGtfs"
 with open("token.txt") as f:
     TOKEN = f.read().strip()
     
