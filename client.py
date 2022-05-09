@@ -2,11 +2,16 @@ import discord
 import datetime
 from datetime import datetime
 import asyncio
+import os
 #from passwords import TOKEN_DISCORD
 
 TOKEN = None
-with open("token.txt","r",encoding="utf-8") as f:
-    TOKEN = f.read().strip()
+try:
+    with open("token.txt","r",encoding="utf-8") as f:
+        TOKEN = f.read().strip()
+except FineNotFoundError:
+    TOKEN = os.getenv("TOKEN")
+
     
 ver='**Launched v6.2**'
 #TOKEN1 = TOKEN_DISCORD
