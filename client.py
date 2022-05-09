@@ -4,23 +4,22 @@ from datetime import datetime
 import asyncio
 #from passwords import TOKEN_DISCORD
 
-TOKEN = None#"NzI0OTI3Mjg0NTU3MTE5NTQw.XxhGmA.YiofcsB8mmEB29rBLILSEnWGtfs"
+TOKEN = None
 with open("token.txt","r",encoding="utf-8") as f:
     TOKEN = f.read().strip()
     
-ver='**Launched v6.1**'
+ver='**Launched v6.2**'
 #TOKEN1 = TOKEN_DISCORD
-chid=724986660890345498 #????? ????????? ?????????
-zal_ozhidaniya_id=724986660286365709 #????? ??? ????????/?????? ??????
-PKid=724986659153641505 #???? ?????????? ?? 
-info_chid=724986660286365714 #????? ????
-voice_chid=854620086203056128 #????? ???????
-working_chid=729588749155041290 #????? ????? ???????
-qu_chid=724986660286365709 #??????-?????? ?????
+chid=724986660890345498 #
+zal_ozhidaniya_id=724986660286365709 #zal ozhidaniya channel
+PKid=724986659153641505 # role of emploer
+info_chid=724986660286365714 #id of info channel
+voice_chid=854620086203056128 #id of voice_chat
+working_chid=729588749155041290 #time schedule of emploe
+qu_chid=724986660286365709 #question channel
 
 with open('greeting.txt', 'r',encoding="utf-8") as f:
     greet1 = f.readline()
-#greet1 = '**????????????**, {0}. ???????? ???????? ????? ????????? ???? ??????, ?????? ?? ?????? ?????? ???? ?????? ? ????????? ?????? {1}.'
 
 class MyClient(discord.Client):
     async def on_ready(self):
@@ -54,12 +53,12 @@ class MyClient(discord.Client):
 
     async def on_message(self, message):
 
-#???????? ????
+#checking role
         if message.guild.get_role(PKid) in message.author.roles:
 
 #writefunc
             if (message.content.startswith('!write'))and(message.author != self.user):
-                print('[COMMAND] !w')
+                print('[COMMAND] !write')
                 await message.channel.send(message.content[6:])
                 await message.delete()
    
@@ -100,7 +99,7 @@ class MyClient(discord.Client):
                 emb.discription = '{}'.format(S[2])       
                 await message.channel.send(embed = emb)
     
- #???? ????? ? ??????????          
+ #Voicechat time schedule     
     async def on_voice_state_update(self,memb,before,after):
      dt=datetime.now()
      
@@ -108,17 +107,17 @@ class MyClient(discord.Client):
         if memb.guild.get_role(PKid) in memb.roles:
             pass
         else:
-            await client.get_channel(working_chid).send('**????? ??????????**')
-            await client.get_channel(chid).send('{}, ?????????? ? ????????? ??????.'.format(memb.guild.get_role(PKid).mention))
+            await client.get_channel(working_chid).send('**ВОШЕЛ АБИТУРИЕНТ**')
+            await client.get_channel(chid).send('{}, абитуриент в голосовом канале.'.format(memb.guild.get_role(PKid).mention))
         if (before.channel == None):
-          await client.get_channel(working_chid).send('{} ??????????? ? ?????? ? {}'.format(memb.mention, dt.strftime("%H:%M:%S %d %B")))
+          await client.get_channel(working_chid).send('{} подключился к каналу в {}'.format(memb.mention, dt.strftime("%H:%M:%S %d %B")))
         elif (before.channel.id != voice_chid): 
-          await client.get_channel(working_chid).send('{} ??????? ? ????? ? {}'.format(memb.mention, dt.strftime("%H:%M:%S %d %B")))
+          await client.get_channel(working_chid).send('{} перешел в канал в {}'.format(memb.mention, dt.strftime("%H:%M:%S %d %B")))
      if (before.channel != None)and(before.channel.id == voice_chid): 
         if (after.channel == None):
-          await client.get_channel(working_chid).send('{} ?????????? ?? ?????? ? {}'.format(memb.mention, dt.strftime("%H:%M:%S %d %B")))
+          await client.get_channel(working_chid).send('{} отключился от канала в {}'.format(memb.mention, dt.strftime("%H:%M:%S %d %B")))
         elif (after.channel.id != voice_chid): 
-          await client.get_channel(working_chid).send('{} ?????? ?? ?????? ? {}'.format(memb.mention, dt.strftime("%H:%M:%S %d %B")))
+          await client.get_channel(working_chid).send('{} отошел от канала в {}'.format(memb.mention, dt.strftime("%H:%M:%S %d %B")))
 
         
 
