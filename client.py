@@ -9,7 +9,7 @@ TOKEN = None
 try:
     with open("token.txt","r",encoding="utf-8") as f:
         TOKEN = f.read().strip()
-except FineNotFoundError:
+except FileNotFoundError:
     TOKEN = os.getenv("TOKEN")
 
     
