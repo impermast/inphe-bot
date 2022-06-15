@@ -110,7 +110,6 @@ class MyClient(discord.Client):
                     greet1 = io.BytesIO(await attach.read()).decode('UTF-8')
                     print("New greeting:\n",greet1)
 
-                    f.close()
     
  #Voicechat time schedule     
     async def on_voice_state_update(self,memb,before,after):
