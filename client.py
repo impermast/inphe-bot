@@ -131,6 +131,7 @@ intents.messages=True
 intents.members=True
 intents.guilds=True
 intents.voice_states=True
+intents.message_content = True
 
 
 client = MyClient(intents=intents)
