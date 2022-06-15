@@ -107,7 +107,7 @@ class MyClient(discord.Client):
             if message.content.startswith('!text'):
                 print('[COMAND] !text')
                 for attach in message.attachments:
-                    greet1 = io.BytesIO(await attach.read()).decode('UTF-8')
+                    greet1 = io.BytesIO(await attach.read())
                     print("New greeting:\n",greet1)
 
     
