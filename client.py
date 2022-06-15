@@ -13,7 +13,7 @@ except FileNotFoundError:
     TOKEN = os.getenv("TOKEN")
 
     
-ver='**Launched v6.5**'
+ver='**Launched v6.6**'
 #TOKEN1 = TOKEN_DISCORD
 chid=724986660890345498 #
 zal_ozhidaniya_id=724986660286365709 #zal ozhidaniya channel
@@ -104,10 +104,10 @@ class MyClient(discord.Client):
                 emb.discription = '{}'.format(S[2])       
                 await message.channel.send(embed = emb)
             
-            if message.content.startswith('!text'):
+            if message.content.startswith('!text') and(message.author != self.user) :
                 print('[COMAND] !text')
                 for attach in message.attachments:
-                    greet1 = io.BytesIO(await attach.read())
+                    greet1 = str(io.BytesIO(await attach.read()),'UTF-8')
                     print("New greeting:\n",greet1)
 
     
