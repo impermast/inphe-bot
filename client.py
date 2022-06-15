@@ -107,10 +107,11 @@ class MyClient(discord.Client):
             if message.content.startswith('!text'):
                 print('[COMAND] !text')
                 for attach in message.attachments:
-                    f.open('new_greeting.txt', 'w+',encoding="utf-8")
+                    f = open('new_greeting.txt', 'w+',encoding="utf-8")
                     await attach.save(f)
                     greet1 = f.readline()
                     print("New greeting:\n",greet1)
+                    f.close()
     
  #Voicechat time schedule     
     async def on_voice_state_update(self,memb,before,after):
