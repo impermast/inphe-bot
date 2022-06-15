@@ -13,7 +13,7 @@ except FileNotFoundError:
     TOKEN = os.getenv("TOKEN")
 
     
-ver='**Launched v6.2**'
+ver='**Launched v6.3**'
 #TOKEN1 = TOKEN_DISCORD
 chid=724986660890345498 #
 zal_ozhidaniya_id=724986660286365709 #zal ozhidaniya channel
