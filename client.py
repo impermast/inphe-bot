@@ -2,7 +2,7 @@ import discord
 import datetime
 from datetime import datetime
 import asyncio
-import os
+import os, io
 #from passwords import TOKEN_DISCORD
 
 TOKEN = None
@@ -13,7 +13,7 @@ except FileNotFoundError:
     TOKEN = os.getenv("TOKEN")
 
     
-ver='**Launched v6.4**'
+ver='**Launched v6.5**'
 #TOKEN1 = TOKEN_DISCORD
 chid=724986660890345498 #
 zal_ozhidaniya_id=724986660286365709 #zal ozhidaniya channel
@@ -107,10 +107,9 @@ class MyClient(discord.Client):
             if message.content.startswith('!text'):
                 print('[COMAND] !text')
                 for attach in message.attachments:
-                    f = open('new_greeting.txt', 'w+',encoding="utf-8")
-                    await attach.save(f)
-                    greet1 = f.readline()
+                    greet1 = io.BytesIO(await attach.read()).decode('UTF-8')
                     print("New greeting:\n",greet1)
+
                     f.close()
     
  #Voicechat time schedule     
