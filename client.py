@@ -13,7 +13,7 @@ except FileNotFoundError:
     TOKEN = os.getenv("TOKEN")
 
     
-ver='**Launched v6.3**'
+ver='**Launched v6.4**'
 #TOKEN1 = TOKEN_DISCORD
 chid=724986660890345498 #
 zal_ozhidaniya_id=724986660286365709 #zal ozhidaniya channel
@@ -88,7 +88,7 @@ class MyClient(discord.Client):
                 print('[COMMAND] !del over')
             if (message.content.startswith('!commands'))and(message.author != self.user):
                 print('[COMMAND] !cmd')
-                await message.channel.send('List of coman?ds: !write [text] !delete !commands')
+                await message.channel.send('List of comands: !write [text] !delete !commands, !greet (showing greeting txt), !text [file.text] (changing greeting text to text in file)')
                 await message.delete()
                 
             if (message.content.startswith('!test'))and(message.author != self.user):
@@ -103,6 +103,14 @@ class MyClient(discord.Client):
                 emb.set_thumbnail(url = 'https://sun9-61.userapi.com/c837538/v837538137/1abc5/VdZCHNTGdO0.jpg')
                 emb.discription = '{}'.format(S[2])       
                 await message.channel.send(embed = emb)
+            
+            if message.content.startswith('!text'):
+                print('[COMAND] !text')
+                for attach in message.attachments:
+                    f.open('new_greeting.txt', 'w+',encoding="utf-8")
+                    await attach.save(f)
+                    greet1 = f.readline()
+                    print("New greeting:\n",greet1)
     
  #Voicechat time schedule     
     async def on_voice_state_update(self,memb,before,after):
